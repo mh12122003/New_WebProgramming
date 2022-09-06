@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: calc(max-content);
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,#aebeff 0%,#cbadff 100%);
+    font-size: 62.5%;
+    line-height: 1.6rem;
+}
+
+:root {
+    --main-color: rgb(135, 252, 0);
+}
+
+#header {
+  top: 0;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-bottom: 1px #ccc solid;
+  height: max-content;
+  box-shadow: 0px 0 1px 0 #333;
+  position: fixed;
+  z-index: 100;
+}
+
+#header img {
+    width: 10%;
+    max-width: 110px;
+}
+
+#header ul {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  margin: 0 40px;
+  height: fit-content;
+  padding: 20px 0;
+}
+
+#header ul li {
+  display: flex;
+}
+
+#header ul li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1.1rem;
+  line-height: 1.4rem;
+  font-weight: 400;
+}
+
+#header ul li a:hover {
+  color: #3a62ff;
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+
+#footer {
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-top: 1px #ccc solid;
+    height: max-content;
+    box-shadow: 0px 0 2px 0 #333;
+  }
+  
+  #footer ul {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 0 40px;
+    height: fit-content;
+    padding: 50px 0;
+  }
+  
+  #footer ul li {
+    display: flex;
+  }
+  
+  #footer ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+    font-weight: 400;
+  }
+  
+  #footer ul li a:hover {
+    color: #7f34ff;
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+
+
+
+/*======================================================================*/
+@media only screen and (max-width: 767px) {
+}
+
+@media only screen and (min-width: 767px) and (max-width:1023px){
+}
+
+@media only screen and (min-width: 1023px) {
+}

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipper Register</title>
+    <link rel="stylesheet" href="/Login & Register/assets/css/shipper_register.css">
+</head>
+<body>
+  <header id="header">
+    <ul>
+        <li class="active"><a href="/Shipper/shipper_page.html">Home</a></li>
+        <li><a href="#">My Account</a></li> <!--link for account page-->
+        <!-- <li><a href="#">Login</a></li> link for login page -->
+    </ul>
+  </header>
+
+    <div id="shipper_register">
+        <h2>Shipper Register</h2>
+    
+        <input type="text" placeholder="Username">
+
+        <input type="password" placeholder="Password">
+
+        <div class="dropdown">
+          <div class="select">
+            <span class="selected">Select your preferred distribution hub</span>
+            <div class="caret"></div>
+          </div>
+          <ul class="menu">
+            <li>Hub 1 - 1st Street 1, District 1</li>
+            <li>Hub 2 - 2nd Street 2, District 2</li>
+            <li>Hub 3 - 3rd Street 3, District 3</li>
+          </ul>
+        </div>
+
+        <script>
+          const dropdowns = document.querySelectorAll('.dropdown');
+          dropdowns.forEach(dropdown => {
+            const select = dropdown.querySelector('.select');
+            const caret = dropdown.querySelector('.caret');
+            const menu = dropdown.querySelector('.menu');
+            const options = dropdown.querySelectorAll('.menu li');
+            const selected = dropdown.querySelector('.selected');
+
+            select.addEventListener('click', () => {
+              select.classList.toggle('select-clicked');
+              menu.classList.toggle('menu-open');
+            });
+
+            options.forEach(option => {
+              option.addEventListener('click', () => {
+                selected.innerText = option.innerText;
+                select.classList.remove('select-clicked');
+                menu.classList.remove('menu-open');
+                options.forEach(option => {
+                  option.classList.remove('active1');
+                });
+                option.classList.add('active1');
+              });
+            });
+          });
+        </script>
+
+        
+
+        <div class="container">
+            <div class="wrapper">
+               <div class="image">
+                  <img src="./assets/images/register/upload_file_logo.png" alt="">
+               </div>
+               <div class="content">
+                  <div class="icon">
+                     <i class="fas fa-cloud-upload-alt"></i>
+                  </div>
+                  <div class="text">
+                  </div>
+               </div>
+               <div id="cancel-btn">
+                  <i class="fas fa-times"></i>
+               </div>
+               <div class="file-name">
+                  File name here
+               </div>
+            </div>
+            <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+            <input id="default-btn" type="file" hidden>
+        </div>
+
+         <script>
+            const wrapper = document.querySelector(".wrapper");
+            const fileName = document.querySelector(".file-name");
+            const defaultBtn = document.querySelector("#default-btn");
+            const customBtn = document.querySelector("#custom-btn");
+            const cancelBtn = document.querySelector("#cancel-btn i");
+            const img = document.querySelector("img");
+            let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+            function defaultBtnActive(){
+              defaultBtn.click();
+            }
+            defaultBtn.addEventListener("change", function(){
+              const file = this.files[0];
+              if(file){
+                const reader = new FileReader();
+                reader.onload = function(){
+                  const result = reader.result;
+                  img.src = result;
+                  wrapper.classList.add("active");
+                }
+                cancelBtn.addEventListener("click", function(){
+                  img.src = "";
+                  wrapper.classList.remove("active");
+                })
+                reader.readAsDataURL(file);
+              }
+              if(this.value){
+                let valueStore = this.value.match(regExp);
+                fileName.textContent = valueStore;
+              }
+            });
+         </script>
+
+           
+
+        <button class="shipper_register--register-btn">REGISTER</button>
+
+        <p>OR</p>
+
+        <div class="shipper_register-form">
+            <a class="shipper_register--forgot-btn">Forgot Password</a>
+            
+            <a href="./shipper_login.html" class="shipper_register--login-btn">Log In</a>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <ul>
+          <li><a href="/Customer/About.html">About</a></li>
+          <li><a href="/Customer/Copyright.html">Copyright</a></li>
+          <li><a href="/Customer/Privacy.html">Privacy</a></li>
+          <li><a href="/Customer/Help.html">Help</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

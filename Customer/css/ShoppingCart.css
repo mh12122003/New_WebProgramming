@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg,#aebeff 0%,#cbadff 100%);
+    font-size: 62.5%;
+    line-height: 1.6rem;
+}
+
+:root {
+    --main-color: rgb(135, 252, 0);
+}
+
+#header {
+    top: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px #ccc solid;
+    height: max-content;
+    box-shadow: 0px 0 1px 0 #333;
+    position: fixed;
+    z-index: 100;
+}
+
+#header ul {
+    list-style: square;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin: 0 40px;
+    height: fit-content;
+    padding: 20px 0;
+}
+
+#header ul li {
+    display: flex;
+}
+#header ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+    font-weight: 400;
+}
+
+#header ul li a:hover {
+    color: #3a62ff;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+
+  
+
+.Product_list {
+    padding-top: 100px;
+}
+.Product_list h2 {
+    text-align: center;
+    padding-top: 50px;
+    font-size: 36px;
+}
+
+.Products {
+    padding-top: 100px;
+    padding-left: 125px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    
+}
+
+
+.Product_item {
+    flex: 33.33%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.Product_item p {
+    text-align: justify;
+    font-size: 22px;
+}
+
+.button1 {
+  background-color: #e7e7e7; /* Green */
+  border: none;
+  color: black;
+  padding: 10px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  margin: 14px 80px;
+  cursor: pointer;
+}
+
+.button {
+    background-color: #00B4CC; /* Green */
+    border: none;
+    color: white;
+    padding: 20px 40px;
+    text-align: right;
+    display: inline-block;
+    font-size: 18px;
+    margin: 24px 133px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+
+  .button2:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+
+
+#footer {
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-top: 1px #ccc solid;
+    height: max-content;
+    box-shadow: 0px 0 2px 0 #333;
+}
+
+#footer ul {
+    list-style: none;
+    display: flex;
+    width: 120%;
+    justify-content: space-evenly;
+    margin: 0 40px;
+    height: fit-content;
+    padding: 50px 0;
+}
+
+#footer ul li {
+    display: flex;
+}
+
+#footer ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+    font-weight: 400;
+}
+
+#footer ul li a:hover {
+    color: #7f34ff;
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+
+@media only screen and (max-width: 767px) {
+
+    #header ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+    #header ul li a {
+        padding: 5px;
+    }
+
+    #footer ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px 0;
+    }
+
+        #footer ul li + li {
+            margin-top: 10px;
+        }
+}
