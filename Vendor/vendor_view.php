@@ -12,8 +12,8 @@
         <img src="./assets/images/main/lazada-logo.png" alt="logo">
         <ul>
             <li>
-                <a href="./vendor_view.html">HOME</a>
-                <a href="./vendor_add.html">Add</a>
+                <a href="./vendor_view.php">HOME</a>
+                <a href="./vendor_add.php">Add</a>
             </li>
             <li><a href="#">My Account</a></li> <!--link for account page-->
             <!-- <li><a href="#">Login</a></li> link for login page -->
@@ -24,36 +24,26 @@
         <form action="vendor_view.php" method="POST">
             <table>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
-                    <th>Price</th>
+                    <th>Price $$$</th>
                     <th>Image</th>
                     <th>Description</th>
                 </tr>
 
-                <tr>
-                    <td>3</td>
-                    <td>Shoes</td>
-                    <td>1$</td>
-                    <td>bruh.png</td>
-                    <td>Made from Dubai, used to slap kids. or parents if kids like to do so. One slap can change someone mind</td>
-                </tr>
-
                 <?php
-                // Create a table from a csv file 
-                echo "<tr>\n\n";
-                $f = fopen("products.csv", "r");
-                while (($line = fgetcsv($f)) !== false) {
-                        $row = $line[0];    // We need to get the actual row (it is the first element in a 1-element array)
-                        $cells = explode(";",$row);
-                        echo "<tr>";
-                        foreach ($cells as $cell) {
-                            echo "<td>" . htmlspecialchars($cell) . "</td>";
-                        }
-                        echo "</tr>\n";
-                }
-                fclose($f);
-                echo "\n</table></body></html>";
+                    $f = fopen("products.csv", "r");
+                    while (($line = fgetcsv($f)) !== false) {
+                            $row = $line[0];
+                            $cells = explode(";",$row);
+                            if ($row !== '.'){
+                                echo "<tr>";
+                                foreach ($cells as $cell) {
+                                    echo "<td>" . htmlspecialchars($cell) . "</td>";
+                                }
+                                echo "</tr>\n";
+                            }
+                    }
+                    fclose($f);
                 ?>
             </table>
         </form>

@@ -7,7 +7,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
+body { 
     display: flex;
     flex-direction: column;
     height: calc(max-content);
@@ -80,59 +80,37 @@ body {
     margin-top: 60px;
     height: max-content;
     min-height: 1000px;
-    display: inline-block;
+    display: flex;
     width: 100%;
     max-width: 1360px;
     padding: 30px 50px;
 }
 
-.vender_view-content {
-    display: inline-flex;
-    width: 30%;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 2px;
-    padding: 10px;
-    margin: 0 1.55555%;
-    margin-bottom: 20px;
-    flex-direction: column;
-    align-items: center;
-}
-
-.vender_view-content:hover {
-    border: 1px #7f34ff solid;
-    cursor: pointer;
-}
-
-.vender_view-content img {
+#vender_view form {
     width: 100%;
-    height: fit-content;
-    border: 1px solid #333;
-    border-radius: 5px;
 }
 
-.vender_view-content_description {
+#vender_view table {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: start;
 }
 
-.vender_view-content_description h2 {
-    font-size: 1.3rem;
-    line-height: 1.4rem;
-    margin: 6px 0;
-    font-weight: 600;
-    color: #333;
-}
-
-.vender_view-content_description h4 {
-    font-size: 1.6rem;
-    line-height: 1.7rem;
-    font-weight: 500;
-    margin: 5px 0;
+#vender_view table tr th {
     color: #7f34ff;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    font-weight: 400;
+    padding: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+#vender_view table tr td {
+    color: #5c20c3;
+    font-size: 0.8rem;
+    line-height: 1.6rem;
+    font-weight: 400;
+    padding: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 0 15px;
 }
 
 #footer {
@@ -178,9 +156,6 @@ body {
 
 /*======================================================================*/
 @media only screen and (max-width: 767px) {
-    .vender_view-content {
-        width: 100%;
-    }
     
     #footer ul {
         display: flex;
@@ -196,9 +171,6 @@ body {
 }
 
 @media only screen and (min-width: 767px) and (max-width:1023px){
-    .vender_view-content {
-        width: 45%;
-    }
 }
 
 @media only screen and (min-width: 1023px) {

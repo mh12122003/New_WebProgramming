@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +31,7 @@
             <textarea placeholder="Description" name="product_description" id="" cols="68" rows="10"></textarea>
 
             <div class="container">
-                <div class="wrapper">
+                <!-- <div class="wrapper">
                    <div class="image">
                       <img src="./assets/images/vender_register/upload_file_logo.png" alt="">
                    </div>
@@ -47,10 +49,10 @@
                     File name here
                 </div>
             </div>
-            <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
-            <input id="default-btn" type="file" hidden>
+            <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button> -->
+            <input id="default-btn" type="file" name="product_image" value="Choose a file">
         </div>
-        <script>
+        <!-- <script>
             const wrapper = document.querySelector(".wrapper");
             const fileName = document.querySelector(".file-name");
             const defaultBtn = document.querySelector("#default-btn");
@@ -81,9 +83,51 @@
                     fileName.textContent = valueStore;
                   }
                 });
-                </script>
+                </script> -->
                 
              <input type="submit" value="SUBMIT" class="submit" name="vendor_add_submit"/>
+             <?php
+
+            if(isset($_POST['vendor_add_submit'])){
+
+                if(isset($_POST['product_name']) && isset($_POST['product_price']) && isset($_POST['product_description']) && isset($_POST['product_image'])){
+
+                    //read data from form
+                    $product_name = filter_input(INPUT_POST, "product_name");
+                    $product_price = filter_input(INPUT_POST, "product_price");
+                    $product_description = filter_input(INPUT_POST, "product_description");
+                    $product_image = filter_input(INPUT_POST, "product_image");
+                    
+                    $blank = ";";
+                    
+                    if ($product_name != '' && $product_price != '' && $product_description != '' && $product_image != '') {
+
+                        //generate output for text file
+                        $output = $product_name;
+                        $output .= $blank;
+                        $output .= $product_price;
+                        $output .= $blank;
+                        $output .= $product_image;
+                        $output .= $blank;
+                        $output .= $product_description;
+                        $output .= "\n";
+                        
+                        //open file for output with append mode "a"
+                        $fp = fopen("products.csv", "w");
+                        //write to the file
+                        fwrite($fp, $output);
+                        fclose($fp);
+
+                        $success_output = "Submitted Successfully!";
+                        echo "<h1 class=\"success\">". $success_output ."</h1>";  
+                        
+                    } else {
+                        $empty_output = "Please enter all the required fields above";
+                        echo "<h1 class=\"warning\">". $empty_output ."</h1>";  
+                    }
+                }
+            }
+            ?>
         </div>
     </form>
 
