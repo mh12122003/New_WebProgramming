@@ -65,7 +65,6 @@
               }
             }
             
-            if(isset($_POST['product_item_click'])){}
             function create_new($id)
             {
               $name = '';

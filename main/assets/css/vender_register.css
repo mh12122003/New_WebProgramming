@@ -118,7 +118,7 @@ body {
     outline: 1px solid #333;
 }
 
-::placeholder {
+::placeholder { 
     color: #ccc;
     line-height: 1.2rem;
 }

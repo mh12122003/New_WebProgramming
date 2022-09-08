@@ -103,6 +103,10 @@ body {
     font-size: 1rem;
     width: 90%;
 }
+#header img {
+    width: 10%;
+    max-width: 110px;
+  }
 
 #customer_login input:focus {
     outline: 1px solid #333;

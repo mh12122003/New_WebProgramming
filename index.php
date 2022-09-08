@@ -5,31 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="/main/assets/css/style.css">
 </head>
 <body>
     <header id="header">
-        <img src="./assets/images/main/lazada-logo.png" alt="logo">
+        <img src="/main/assets/images/Lazada-logo.png" alt="logo">
         <ul>
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">My Account</a></li> <!--link for account page-->
             <!-- <li><a href="#">Login</a></li> link for login page -->
         </ul>
       </header>
 
     <div id="main-container">
         <div>
-            <a href="./Login & Register/customer_register.html">
+            <a href="/main/customer_register.html">
                 <p>Login as <br> <span>Customer</span></p>
             </a>
         </div>
         <div>
-            <a href="./Login & Register/vender_register.html">
+            <a href="/main/vender_register.html">
                 <p>Login as <br> <span>Vendor</span></p>
             </a>
         </div>
         <div>
-            <a href="./Login & Register/shipper_register.html">
+            <a href="/main/shipper_register.html">
                 <p>Login as <br> <span>Shipper</span></p>
             </a>
         </div>

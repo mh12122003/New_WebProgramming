@@ -64,6 +64,11 @@ body {
     font-weight: 500;
     font-size: 1.4rem;
 }
+#header img {
+    width: 10%;
+    max-width: 110px;
+  }
+
 
 #shipper_login {
     height: 80%;
