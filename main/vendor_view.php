@@ -15,7 +15,10 @@
                 <a href="./vendor_view.php">HOME</a>
                 <a href="./vendor_add.php">Add</a>
             </li>
-            <li><a href="#">My Account</a></li> <!--link for account page-->
+            <li>
+                <a href="#">Shopping Cart</a>
+                <a href="#">My Account</a>
+            </li> <!--link for account page-->
             <!-- <li><a href="#">Login</a></li> link for login page -->
         </ul>
     </header>

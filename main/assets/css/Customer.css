@@ -63,6 +63,10 @@ body {
     font-size: 1.4rem;
 }
 
+#header ul li a + a {
+    margin-left: 20px;
+}
+
 .filter {
     padding-left: 100px;
 }
@@ -135,6 +139,7 @@ input[type=submit]:hover {
 
 .Product_list {
     padding-top: 100px;
+    width: 100%;
 }
 .Product_list h2 {
     text-align: center;
@@ -162,6 +167,13 @@ input[type=submit]:hover {
     flex: 33.33%;
     padding-top: 40px;
     padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.submit {
+    width: 33.3%;
+    
 }
 
 .Product_item p {
@@ -207,6 +219,10 @@ input[type=submit]:hover {
     color: #7f34ff;
     font-weight: 500;
     font-size: 1.4rem;
+}
+
+.submit {
+
 }
 
 @media only screen and (max-width: 767px) {
