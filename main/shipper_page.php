@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Shipper Page</title>
-    <link rel="stylesheet" href="/Shipper/assets/css/shipper_page.css">
+    <link rel="stylesheet" href="/main/assets/css/shipper_page.css">
   </head>
   <body>   
     <!--header-->

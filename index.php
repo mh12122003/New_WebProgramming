@@ -17,17 +17,17 @@
 
     <div id="main-container">
         <div>
-            <a href="/main/customer_register.html">
+            <a href="/main/customer_register.php">
                 <p>Login as <br> <span>Customer</span></p>
             </a>
         </div>
         <div>
-            <a href="/main/vender_register.html">
+            <a href="/main/vendor_register.php">
                 <p>Login as <br> <span>Vendor</span></p>
             </a>
         </div>
         <div>
-            <a href="/main/shipper_register.html">
+            <a href="/main/shipper_register.php">
                 <p>Login as <br> <span>Shipper</span></p>
             </a>
         </div>
