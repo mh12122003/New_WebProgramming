@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Products</title>
-    <link rel="stylesheet" href="/Vendor/assets/css/vender_view.css">
+    <link rel="stylesheet" href="/main/assets/css/vender_view.css">
 </head>
 <body>
     <header id="header">
@@ -16,7 +16,6 @@
                 <a href="./vendor_add.php">Add</a>
             </li>
             <li>
-                <a href="#">Shopping Cart</a>
                 <a href="#">My Account</a>
             </li> <!--link for account page-->
             <!-- <li><a href="#">Login</a></li> link for login page -->
@@ -27,6 +26,7 @@
         <form action="vendor_view.php" method="POST">
             <table>
                 <tr>
+                    <th>ID</th>
                     <th>Name</th>
                     <th>Price $$$</th>
                     <th>Image</th>

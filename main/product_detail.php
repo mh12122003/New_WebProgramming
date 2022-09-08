@@ -29,9 +29,7 @@
       <div id="image_block">
         <input class="image" type="image" src="/main/assets/images/Product1.jpg" alt="men's shirt" width="425" height="425">
         <div id="image_box"> <!--small pictures of the product-->
-          <input class="image1" type="image" src="/main/assets/images/Product1.1.jpg" alt="men's shirt" width="140" height="140">
-          <input class="image1" type="image" src="/main/assets/images/Product1.2.jpg" alt="men's shirt" width="140" height="140">
-          <input class="image1" type="image" src="/main/assets/images/Product1.3.jpg" alt="men's shirt" width="140" height="140">
+          <p>Description: bla blaba bla bla blaba bla bla blaba bla bla blaba bla bla blaba bla bla blaba bla bla blaba bla </p>
         </div>
       </div>
 

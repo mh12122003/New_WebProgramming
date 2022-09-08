@@ -37,6 +37,12 @@ body {
     z-index: 100;
 }
 
+
+#header img {
+    width: 10%;
+    max-width: 110px;
+}
+
 #header ul {
     list-style: none;
     display: flex;
@@ -130,19 +136,6 @@ body {
     margin-top: 20px;
 }
 
-#vender_add button {
-    margin: 20px 0;
-    border: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    padding: 10px;
-    border: #ccc 1px solid;
-    border-radius: 15px;
-    color: #fff;
-    width: 80%;
-    background-color: #3a8ffe;
-    cursor: pointer;
-}
 
 #vender_add textarea {
     margin-top: 20px;
@@ -160,6 +153,20 @@ body {
 
 #vender_add textarea:focus {
     outline: 1px solid #333;
+}
+
+#vender_add .submit {
+    margin: 20px 0;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 10px;
+    border: #ccc 1px solid;
+    border-radius: 15px;
+    color: #fff;
+    width: 80%;
+    background-color: #3a8ffe;
+    cursor: pointer;
 }
 
 #footer {
@@ -201,6 +208,14 @@ body {
     color: #7f34ff;
     font-weight: 500;
     font-size: 1.4rem;
+}
+
+.warning {
+    color: red;
+}
+
+.success {
+    color: lawngreen;
 }
 
 /*----------------------------------------------------------------*/

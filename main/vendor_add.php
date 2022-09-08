@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add products</title>
-    <link rel="stylesheet" href="/Vendor/assets/css/vender_add.css">
+    <link rel="stylesheet" href="/main/assets/css/vender_add.css">
 </head>
 <body>
     <header id="header">
-      <img src="./assets/images/main/lazada-logo.png" alt="logo">
+      <img src="/main/assets/images/Lazada-logo.png" alt="logo">
         <ul>
             <li>
                 <a href="./vendor_view.php">HOME</a>
@@ -101,9 +101,14 @@
                     $blank = ";";
                     
                     if ($product_name != '' && $product_price != '' && $product_description != '' && $product_image != '') {
+                      
+                      $id = count(file('products.csv')) + 1;
+
 
                         //generate output for text file
-                        $output = $product_name;
+                        $output = $id;
+                        $output .= $blank;
+                        $output .= $product_name;
                         $output .= $blank;
                         $output .= $product_price;
                         $output .= $blank;
@@ -113,7 +118,7 @@
                         $output .= "\n";
                         
                         //open file for output with append mode "a"
-                        $fp = fopen("products.csv", "w");
+                        $fp = fopen("products.csv", "a");
                         //write to the file
                         fwrite($fp, $output);
                         fclose($fp);
@@ -127,6 +132,7 @@
                     }
                 }
             }
+
             ?>
         </div>
     </form>
