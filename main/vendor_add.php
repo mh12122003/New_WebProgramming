@@ -16,7 +16,7 @@
             <li>
                 <a href="./vendor_view.php">HOME</a>
             </li>
-            <li><a href="#">My Account</a></li> <!--link for account page-->
+            <li><a href="/main/profile_vendor.php">My Account</a></li> <!--link for account page-->
             <!-- <li><a href="#">Login</a></li> link for login page -->
         </ul>
     </header>

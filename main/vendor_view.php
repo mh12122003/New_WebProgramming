@@ -16,7 +16,7 @@
                 <a href="./vendor_add.php">Add</a>
             </li>
             <li>
-                <a href="#">My Account</a>
+                <a href="/main/profile_vendor.php">My Account</a>
             </li> <!--link for account page-->
             <!-- <li><a href="#">Login</a></li> link for login page -->
         </ul>
