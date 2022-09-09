@@ -27,7 +27,7 @@
         <input type="text" name="baddress" placeholder="Business Address" required>
     
         <div class="container">
-            <input id="default-btn" type="file">
+            <input id="default-btn" type="file" name="image">
         </div>
 
         <button class="vender_register--register-btn" name="register_btn">REGISTER</button>
@@ -60,6 +60,7 @@ if (isset($_POST['register_btn'])){
                     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                     $bname = filter_input(INPUT_POST, "bname");
                     $baddress = filter_input(INPUT_POST, "baddress");
+                    $image = filter_input(INPUT_POST, "image");
                     
                     $blank = ";";
 
@@ -76,6 +77,8 @@ if (isset($_POST['register_btn'])){
                         $output .= $bname;
                         $output .= $blank;
                         $output .= $baddress;
+                        $output .= $blank;
+                        $output .= $image;
                         $output .= "\n";
     
     $status = "Registration succeed!";
@@ -114,7 +117,7 @@ if (isset($_POST['register_btn'])){
         <div class=\"main\">
             <div class=\"topbar\">
             <button name=\"go_to_main\">HOME</button>
-                <button href=\"\">UPDATE</button>
+            <button name=\"update_image\">UPDATE</button>
                 <button name=\"log_out\" href=\"\">SIGN OUT</button>
             </div>
             <div class=\"row\">
@@ -126,6 +129,18 @@ if (isset($_POST['register_btn'])){
                                 <h3>Username: $username</h3>
                                 <h3>Business Name: $bname</h3>
                                 <h3>Business Address: $baddress</h3>
+                                <h3>Image: 
+                                <?php
+                                        \$f = fopen(\"account_vendor.csv\", \"r\");
+                                        while ((\$line = fgetcsv(\$f)) !== false) {
+                                            \$row = \$line[0];
+                                            \$cells = explode(\";\",\$row);
+                                            if (\$cells[0] == \"$username\"){
+                                                echo \$cells[4];
+                                            }       
+                                        }
+                                    ?>
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -136,38 +151,26 @@ if (isset($_POST['register_btn'])){
                         <div class=\"card-body\">
                             <div class=\"row\">
                                 <div class=\"col-md-3\">
-                                    <h5>Username</h5>
+                                    <h5>Update Image</h5>
                                 </div>
                                 <div class=\"col-md-9 text-secondary\">
-                                    <input type=\"text\">
+                                    <input type=\"file\" name=\"new_image\">
                                 </div>
                             </div>
-                            <hr>
-                            <div class=\"row\">
-                                <div class=\"col-md-3\">
-                                    <h5>Password</h5>
-                                </div>
-                                <div class=\"col-md-9 text-secondary\">
-                                    <input type=\"text\">
                         </div>
-                    </div>
-                    <hr>
-                            <div class=\"row\">
-                                <div class=\"col-md-3\">
-                                    <h5>New password</h5>
-                                </div>
-                                <div class=\"col-md-9 text-secondary\">
-                                    <input type=\"text\">
+                    </form>
                 </div>
             </div>
-        </div>
+        </div> 
     </form>
-
 
 </body>
 
 </html>
 <?php
+\$username = \"$username\";
+
+
 if (isset(\$_POST[\"log_out\"])){
   if (file_exists(\"vendor_register.php\")) {
       header(\"Location: vendor_register.php\");
@@ -180,6 +183,19 @@ if (isset(\$_POST[\"go_to_main\"])){
   if (file_exists(\"vendor_view_$username.php\")) {
       header(\"Location: vendor_view_$username.php\");
   }
+}
+
+if (isset(\$_POST[\"update_image\"])){
+    \$new_image = filter_input(INPUT_POST, \"new_image\");
+    \$f = fopen(\"account_vendor.csv\", \"r\");
+    while ((\$line = fgetcsv(\$f)) !== false) {
+        \$row = \$line[0];
+        \$cells = explode(\";\",\$row);
+        if (\$cells[0] == \$username){
+            // \$cells[4] = \$new_image;
+            echo \"<h1>Change the image to \$new_image</h1>\";
+        }       
+    }
 }
 ?>
             ";
