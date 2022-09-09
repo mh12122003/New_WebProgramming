@@ -199,6 +199,7 @@ if (isset(\$_POST[\"update_image\"])){
             echo \"<h1>Change the image to \$new_image</h1>\";
         }       
     }
+    fclose(\$f);
 }
 ?>
             ";
@@ -274,10 +275,40 @@ $new_customer_view = "
                                 echo \"<a href=\\\"#\\\"><input class=\\\"image\\\" type=\\\"image\\\" alt=\\\"hand bag\\\"
                                 width=\\\"300\\\" height=\\\"300\\\" src=\\\"/main/assets/images/Product1.1.jpg\\\"></a>\";
                                 echo \"<button class=\\\"submit\\\" type=\\\"submit\\\" name=\\\"\$cells[0]\\\">Click here to see the product details</button>\";
+                                echo \"<button class=\\\"submit\\\" type=\\\"submit\\\" name=\\\"\$cells[0]_buy\\\">BUY</button>\";
                                 echo \"</div>\n\";
                             }
                     }
                     fclose(\$f);
+
+                    if (file_exists(\"products_$username.csv\")){
+                    } else {
+                      \$test = '$username;\\n';
+                      \$test .= \"\\n\";
+                      // \$p = fopen('/main/products_$username.csv', 'wb');
+                      file_put_contents(\"products_$username.csv\", \$test, FILE_APPEND | LOCK_EX);
+                      // fclose(\$p);
+                    } 
+
+                    for (\$i = 1; \$i <= count(file('products.csv')); \$i++) {
+                      \$buy = \$i . \"_buy\";
+                      if(isset(\$_POST[\$buy])){
+                        buying_product(\$i);
+                      }
+                    }
+
+                    function buying_product(\$id){
+                      \$output = array(\"\$id;\");
+                      \$fp = fopen('products_$username.csv', 'a');
+                      foreach (\$output as \$line)
+                      {
+                      fputcsv(\$fp,explode(',',\$line));
+                      }
+                      // fwrite(\$fp, \$output);
+                      fclose(\$fp);
+                      echo \"<h1>ADDED SUCCESSFULLY</h1>\";
+                    };
+
 
             for (\$i = 1; \$i <= count(file('products.csv')); \$i++) {
               if(isset(\$_POST[\$i])){
@@ -327,7 +358,7 @@ $new_customer_view = "
                     </ul>
                   </header>
               
-                  <section class=\\\"Product_detail\\\">
+                  <form class=\\\"Product_detail\\\" method=\\\"post\\\" action=\\\"$username+\$id.php\\\">
                     <!--product_detail-->
                     <div id=\\\"detail_box\\\">
                       <h2 id=\\\"product_title\\\">\$name</h2>
@@ -344,9 +375,8 @@ $new_customer_view = "
                       </div>
                     </div>
               
-                    <button class=\\\"button button1\\\" type=\\\"button\\\">Add to Cart</button>
                     
-                  </section>
+                  </form>
               
                   <!--footer-->
                   <footer id=\\\"footer\\\">
@@ -359,12 +389,35 @@ $new_customer_view = "
                   </footer>
                 </body>
               </html>
+              <?php
+              // \\\$output = array(\\\"\$id;\\\");
+              // \\\$fp = fopen('./main/products_$username.csv', 'a');
+              // foreach (\\\$output as \\\$line)
+              // {
+              // fputcsv(\\\$fp,explode(',',\\\$line));
+              // }
+              // // fwrite(\\\$fp, \\\$output);
+              // fclose(\\\$fp);
+  
+              
+
+
+            
+            ?>
                   \";
                   if (file_exists(\"$username+\$id.php\")) {
                       header(\"location: /main/$username+\$id.php\");
                   } else {
                       file_put_contents(\"$username+\$id.php\", \$text, FILE_APPEND | LOCK_EX);
                       header(\"location: /main/$username+\$id.php\");
+                  }
+
+                  if (file_exists(\"products_$username.csv\")){
+                  } else {
+                    \$test = \"$username;\";
+                    // \$p = fopen('/main/products_$username.csv', 'wb');
+                    file_put_contents(\"products_$username.csv\", \$test, FILE_APPEND | LOCK_EX);
+                    // fclose(\$p);
                   }
               };
             
