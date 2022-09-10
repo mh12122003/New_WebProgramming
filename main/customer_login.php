@@ -285,8 +285,7 @@ $new_customer_view = "
 
                     if (file_exists(\"products_$username.csv\")){
                     } else {
-                      \$test = '$username;';
-                      \$test .= \"\\n\";
+                      \$test = '';
                       // \$p = fopen('/main/products_$username.csv', 'wb');
                       file_put_contents(\"products_$username.csv\", \$test, FILE_APPEND | LOCK_EX);
                       // fclose(\$p);
@@ -416,7 +415,7 @@ $new_customer_view = "
 
                   if (file_exists(\"products_$username.csv\")){
                   } else {
-                    \$test = \"$username;\";
+                    \$test = \"\";
                     // \$p = fopen('/main/products_$username.csv', 'wb');
                     file_put_contents(\"products_$username.csv\", \$test, FILE_APPEND | LOCK_EX);
                     // fclose(\$p);

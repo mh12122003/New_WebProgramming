@@ -77,20 +77,79 @@ if (isset($_POST['register_btn'])){
                         $output .= $image;
                         $output .= "\n";
     
-    $status = "Registration succeed!";
+    // $status = "Registration succeed!";
+    // $f = fopen("account_customer.csv", "r");
+    //                 while (($line = fgetcsv($f)) !== false) {
+    //                         $row = $line[0];
+    //                         $cells = explode(";",$row);
+    //                             if ($cells[0] == $username){
+    //                                 $status = "Invalid username!";
+    //                                 break;
+    //                             }       
+    //                         }         
+                    
+                    
+    //                 // echo "<script type='text/javascript'>alert('$status');</script>";
+    //                 fclose($f);
+
+    $valid_status = "Valid username!";
     $f = fopen("account_customer.csv", "r");
                     while (($line = fgetcsv($f)) !== false) {
                             $row = $line[0];
                             $cells = explode(";",$row);
                                 if ($cells[0] == $username){
-                                    $status = "Invalid username!";
+                                    $valid_status = "Invalid username!";
+                                    echo "<script type='text/javascript'>alert('$valid_status');</script>";
                                     break;
                                 }       
-                            }         
+                            }
                     
-                    
-                    // echo "<script type='text/javascript'>alert('$status');</script>";
                     fclose($f);
+
+    $user_status = " ";
+                    $user_uppercase = preg_match('@[A-Z]@', $username);
+                    $user_lowercase = preg_match('@[a-z]@', $username);
+                    $user_number    = preg_match('@[0-9]@', $username);
+
+                    if(!$user_uppercase || !$user_lowercase || !$user_number || strlen($username) < 8 || strlen($username) > 15) {
+                      $user_status = "Username must have a length from 8 to 15 characters and include at least one lowercase letter, one uppercase letter and one number";
+                      echo "<script type='text/javascript'>alert('$user_status');</script>";
+                  } else { 
+                      $user_status = "Strong username";
+                  }
+
+    $pass_status = " ";                        
+                    $pass_uppercase = preg_match('@[A-Z]@', $password);
+                    $pass_lowercase = preg_match('@[a-z]@', $password);
+                    $pass_number    = preg_match('@[0-9]@', $password);
+                    $pass_specialChars = preg_match('@[^\w]@', $password);
+
+                    if(!$pass_uppercase || !$pass_lowercase || !$pass_number || !$pass_specialChars || strlen($password) < 8 || strlen($password) > 20) {
+                      $pass_status = "Password must have a length from 8 to 20 characters and include at least one lowercase letter, one uppercase letter, one number, and one special character.";
+                      echo "<script type='text/javascript'>alert('$pass_status');</script>";
+                  } else {
+                      $pass_status = "Strong password";
+                  }
+
+    
+             
+    if ($valid_status == "Valid username!" && $user_status == "Strong username" && $pass_status == "Strong password") {
+      $status = "Registration succeed!";
+      echo "<script type='text/javascript'>alert('$status');</script>";
+      //open file for output with append mode "a"
+    //   $fp = fopen("account_shipper.csv", "a");
+    //   //write to the file
+    //   fwrite($fp, $output);
+    //   fclose($fp);
+    //   header("Location: /main/shipper_page.php");
+
+    //   if (file_exists("shipper_page.php")) {
+    //     jump_to_main();
+    // }
+      // code to append info to data file and redirect to homepage
+    } else {
+      $status = "Registration failed!";
+    }
 
     if ($status == "Registration succeed!"){
         $fp = fopen("account_customer.csv", "a");
@@ -283,8 +342,7 @@ $new_customer_view = "
 
                     if (file_exists(\"products_$username.csv\")){
                     } else {
-                      \$test = '$username;\\n';
-                      \$test .= \"\\n\";
+                      \$test = '';
                       // \$p = fopen('/main/products_$username.csv', 'wb');
                       file_put_contents(\"products_$username.csv\", \$test, FILE_APPEND | LOCK_EX);
                       // fclose(\$p);
@@ -414,7 +472,7 @@ $new_customer_view = "
 
                   if (file_exists(\"products_$username.csv\")){
                   } else {
-                    \$test = \"$username;\";
+                    \$test = \"\";
                     // \$p = fopen('/main/products_$username.csv', 'wb');
                     file_put_contents(\"products_$username.csv\", \$test, FILE_APPEND | LOCK_EX);
                     // fclose(\$p);
