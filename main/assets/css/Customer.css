@@ -221,9 +221,6 @@ input[type=submit]:hover {
     font-size: 1.4rem;
 }
 
-.submit {
-
-}
 
 @media only screen and (max-width: 767px) {
 
@@ -238,6 +235,67 @@ input[type=submit]:hover {
     #header ul li a {
         padding: 5px;
     }
+
+    .filter {
+        padding-left: 50px;
+    }
+    
+    
+    input[type=text] {
+        width: 70%;
+        padding: 12px 15px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+      
+    input[type=submit] {
+        width: 70%;
+        background-color: #00B4CC;
+        color: white;
+        padding: 12px 15px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .Product_list h2 {
+        font-size: 20px;
+    }
+    
+    .search {
+        width: 400px;
+        display: inline-block;
+        position: absolute;
+        top: 55%;
+        left: 10%;
+      }
+    
+      
+      .searchTerm {
+        padding: 5px;
+        height: 50px;
+        outline: none;
+        color: #9DBFAF;
+        font-size: 17px;
+      }
+      
+
+      .searchButton {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #00B4CC;
+        background: #00B4CC;
+        text-align: center;
+        color: #fff;
+        cursor: pointer;
+        font-size: 20px;
+      }
+
+    
 
     #footer ul {
         display: flex;

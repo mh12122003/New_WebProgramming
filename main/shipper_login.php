@@ -36,10 +36,10 @@
 
     <footer id="footer">
         <ul>
-            <li><a href="/Customer/About.html">About</a></li>
-            <li><a href="/Customer/Copyright.html">Copyright</a></li>
-            <li><a href="/Customer/Privacy.html">Privacy</a></li>
-            <li><a href="/Customer/Help.html">Help</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Copyright.html">Copyright</a></li>
+            <li><a href="Privacy.html">Privacy</a></li>
+            <li><a href="Help.html">Help</a></li>
         </ul>
     </footer>
 </body>
@@ -236,43 +236,49 @@ if (isset(\$_POST[\"update_image\"])){
       function get_customer(\$username) {
         \$link = \"products_\$username.csv\";
 
-        \$f = fopen(\"products.csv\", \"r\");
-        \$j = fopen(\$link, \"r\");
-  
-  
-        \$csvFile = file(\$link);
-        \$data = [];
-        foreach (\$csvFile as \$line) {
-          \$data[] = str_getcsv(\$line[0]);
-        }
-        // echo \$data[2][0];
-  
-        while ((\$line = fgetcsv(\$f)) !== false) {
-          \$row = \$line[0];
-          \$cells = explode(\";\",\$row);
-          // echo \$cells[0];
-          for (\$i = 0; \$i < count(file(\$link)); \$i++) {
-            if (\$cells[0] == \$data[\$i][0]){
-              echo \"
-              
-              <div class=\\\"shipper_page-content\\\">
-              <img src=\\\"./assets/images/vender_page/product_manage_icon.png\\\" alt=\\\"\\\">
-              <div class=\\\"shipper_page-content_description\\\">
-                   <h2>\$cells[1]</h2>
-                   <h4>\$cells[2]\$</h4>
-                   <h3>Customer: <span>\$username</span></h3>
-                   <h5>Status: <button><span>Active</span></button></h5>
-                   <a href=\\\"order_detail.html\\\">Click here to view detail →</a>
-              </div>
-              </div>
-  
-              \";
+        if (file_exists(\$link)) {
+
+          \$f = fopen(\"products.csv\", \"r\");
+          \$j = fopen(\$link, \"r\");
+    
+    
+          \$csvFile = file(\$link);
+          \$data = [];
+          foreach (\$csvFile as \$line) {
+            \$data[] = str_getcsv(\$line[0]);
+          }
+          // echo \$data[2][0];
+    
+          while ((\$line = fgetcsv(\$f)) !== false) {
+            \$row = \$line[0];
+            \$cells = explode(\";\",\$row);
+            // echo \$cells[0];
+            for (\$i = 0; \$i < count(file(\$link)); \$i++) {
+              if (\$cells[0] == \$data[\$i][0]){
+                echo \"
+                
+                <div class=\\\"shipper_page-content\\\">
+                <img src=\\\"./assets/images/vender_page/product_manage_icon.png\\\" alt=\\\"\\\">
+                <div class=\\\"shipper_page-content_description\\\">
+                     <h2>\$cells[1]</h2>
+                     <h4>\$cells[2]\$</h4>
+                     <h3>Customer: <span>\$username</span></h3>
+                     <h5>Status: <button><span>Active</span></button></h5>
+                </div>
+                </div>
+    
+                \";
+              };
             };
-          };
-        }
-        
-        fclose(\$f);
-        fclose(\$j);
+          }
+          
+          fclose(\$f);
+          fclose(\$j);
+
+        } else {
+            echo \"<h1>No Products From \$username To Be Shown</h1>\";
+        };
+
       }
 
       ?>

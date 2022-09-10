@@ -36,10 +36,10 @@
 
     <footer id="footer">
         <ul>
-            <li><a href="/Customer/About.html">About</a></li>
-            <li><a href="/Customer/Copyright.html">Copyright</a></li>
-            <li><a href="/Customer/Privacy.html">Privacy</a></li>
-            <li><a href="/Customer/Help.html">Help</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Copyright.html">Copyright</a></li>
+            <li><a href="Privacy.html">Privacy</a></li>
+            <li><a href="Help.html">Help</a></li>
         </ul>
     </footer>
 </body>
@@ -222,7 +222,7 @@ $text = $text1 . "\n" . $text2 . "\n" . $text3;
             }
 
 $new_customer_view = "
-<!DOCTYPE html>
+
 <html lang=\"en\">
   <head>
     <meta charset=\"utf-8\">
@@ -248,16 +248,16 @@ $new_customer_view = "
       <h3>Price Filtering</h3>
       <div class=\"filter\">
               
-        <input type=\"text\" id=\"min\" placeholder=\"Minimum price\">
-        <input type=\"text\" id=\"max\"  placeholder=\"Maximum price\">
+        <input type=\"number\" id=\"min\" name=\"min_price\" placeholder=\"Minimum price\">
+        <input type=\"number\" id=\"max\" name=\"max_price\" placeholder=\"Maximum price\">
         
-        <input type=\"submit\" value=\"Search\">
+        <input type=\"submit\" name=\"act\" value=\"Search\">
       </div>
       
         <!--search_bar-->
         <div class=\"search\">
-          <input type=\"text\" class=\"searchTerm\" placeholder=\"What are you looking for?\">
-          <button type=\"submit\" class=\"searchButton\">
+          <input type=\"text\" class=\"searchTerm\" name=\"name\" placeholder=\"What are you looking for?\">
+          <button type=\"submit\" class=\"searchButton\" name=\"submit\">
             <i class=\"fa fa-search\"></i>
           </button>
         </div>
@@ -265,23 +265,105 @@ $new_customer_view = "
       <!--products_images_and_details-->
     <h2>Available Products</h2>
     <div class=\"Products\">
-      <?php
-                    \$f = fopen(\"products.csv\", \"r\");
-                    while ((\$line = fgetcsv(\$f)) !== false) {
-                            \$row = \$line[0];
-                            \$cells = explode(\";\",\$row);
-                            if (\$row !== '.'){
-                                echo \"<div class=\\\"Product_item\\\">\n\";
-                                echo \"<p class=\\\"text\\\">\$cells[1]</p>\";
-                                echo \"<p class=\\\"product_price\\\"><sup><u>đ</u></sup> \$cells[2]</p>\";
-                                echo \"<a href=\\\"#\\\"><input class=\\\"image\\\" type=\\\"image\\\" alt=\\\"hand bag\\\"
-                                width=\\\"300\\\" height=\\\"300\\\" src=\\\"/main/assets/images/Product1.1.jpg\\\"></a>\";
-                                echo \"<button class=\\\"submit\\\" type=\\\"submit\\\" name=\\\"\$cells[0]\\\">Click here to see the product details</button>\";
-                                echo \"<button class=\\\"submit\\\" type=\\\"submit\\\" name=\\\"\$cells[0]_buy\\\">BUY</button>\";
-                                echo \"</div>\n\";
-                            }
-                    }
-                    fclose(\$f);
+<?php
+function searching(){
+
+  function clean(\$string){
+    \$string = str_replace('\"','',\$string);
+    return \$string;
+  }
+
+  function read_and_filter() {
+    \$file = fopen(\"products_dup.csv\",'a');
+    \$file_f = fopen(\"products.csv\",'r');
+
+    fwrite(\$file, \"ID,name,price,image,description\n\");
+    while ((\$line = fgetcsv(\$file_f)) !== false) {
+      \$row = \$line[0];
+      \$cells = explode(\";\",\$row);
+      \$text = \$cells[0] . ',' . \$cells[1] . ',' . \$cells[2] . ',' . \$cells[3] . ',' . \$cells[4] . \"\n\";
+      fwrite(\$file, \$text);
+    }
+
+    fclose(\$file_f);
+    fclose(\$file);
+
+    \$f = fopen(\"products_dup.csv\", \"r\");
+    \$first = fgetcsv(\$f);
+    while ((\$row = fgetcsv(\$f))) {
+        \$product = [];
+        \$i = 0;
+        foreach (\$first as \$col_name) {
+            \$product[\$col_name] = \$row[\$i];
+            \$i++;
+        }
+      //   echo \$product[\"price\"];
+        if(isset(\$_POST[\"min_price\"]) && is_numeric(\$_POST[\"min_price\"])) {
+          if (\$product[\"price\"] < \$_POST[\"min_price\"]){
+            continue;
+          }
+        }
+        if(isset(\$_POST[\"max_price\"]) && is_numeric(\$_POST[\"max_price\"])) {
+          if (\$product[\"price\"] > \$_POST[\"max_price\"]){
+            continue;
+          }
+        }
+        if(isset(\$_POST[\"name\"]) && !empty(\$_POST[\"name\"])) {
+          if (strpos(\$product[\"name\"], \$_POST[\"name\"]) === false) {
+            continue;
+          }
+        }
+        \$final = \$product['ID'] . ';' . \$product['name'] .  ';' . \$product['price'] .   ';' . \$product['image'] .  ';' . \$product['description'] . \"\n\";
+
+
+        \$fa= fopen('filterproduct.csv','a');
+        fwrite(\$fa,\$final);
+        fclose(\$fa);
+
+      }
+      unlink('products_dup.csv');
+    fclose(\$f);
+
+    \$f = fopen(\"filterproduct.csv\", \"r\");
+            while ((\$line = fgetcsv(\$f)) !== false) {
+                    \$row = \$line[0];
+                    \$cells = explode(\";\",\$row);
+                    print (\"<div class=\\\"Product_item\\\">
+                    <p class=\\\"text\\\">\$cells[1]</p>
+                    <p class=\\\"product_price\\\"><sup><u>đ</u></sup>\$cells[2]</p>
+                    <a href=\\\"#\\\"><input class=\\\"image\\\" type=\\\"image\\\" alt=\\\"hand bag\\\"
+                    width=\\\"300\\\" height=\\\"300\\\" src=\\\"/main/assets/images/Product1.1.jpg\\\"></a>
+                    <button class=\\\"submit\\\" type=\\\"submit\\\" name=\\\"\$cells[0]_buy\\\">BUY</button>
+                    <button class=\\\"submit\\\" type=\\\"submit\\\" name=\\\"\$cells[0]_see\\\">Click here to see the product details</button></div>\");
+                    
+            }
+            fclose(\$f);
+            unlink('filterproduct.csv');
+  }
+  read_and_filter();
+};
+
+
+
+if ( ((!isset(\$_POST['act']) && (!isset(\$_POST['submit']))))){
+\$f = fopen(\"products.csv\", \"r\");
+while ((\$line = fgetcsv(\$f)) !== false) {
+        \$row = \$line[0];
+        \$cells = explode(\";\",\$row);
+print (\"<div class=\\\"Product_item\\\">
+<p class=\\\"text\\\">\$cells[1]</p>
+<p class=\\\"product_price\\\"><sup><u>đ</u></sup>\$cells[2]</p>
+<a href=\\\"#\\\"><input class=\\\"image\\\" type=\\\"image\\\" alt=\\\"hand bag\\\"
+width=\\\"300\\\" height=\\\"300\\\" src=\\\"/main/assets/images/Product1.1.jpg\\\"></a>
+<button class=\\\"submit\\\" type=\\\"submit\\\" name=\\\"\$cells[0]_buy\\\">BUY</button>
+<button class=\\\"submit\\\" type=\\\"submit\\\" name=\\\"\$cells[0]_see\\\">Click here to see the product details</button></div>\");
+
+}
+fclose(\$f);
+} else if ( ((isset(\$_POST['act']) || (isset(\$_POST['submit'])))))   {
+searching();
+}
+
 
                     if (file_exists(\"products_$username.csv\")){
                     } else {
@@ -312,118 +394,105 @@ $new_customer_view = "
                                        
 
             for (\$i = 1; \$i <= count(file('products.csv')); \$i++) {
-              if(isset(\$_POST[\$i])){
+              \$see = \$i . \"_see\";
+              if(isset(\$_POST[\$see])){
                 create_new(\$i);
               }
             }
-            
+
             function create_new(\$id)
-            {
-              \$name = '';
-              \$price = '';
-              \$image = '';
-              \$description = '';
-              
-              
-              \$f = fopen(\"products.csv\", \"r\");
-              while ((\$line = fgetcsv(\$f)) !== false) {
-                      \$row = \$line[0];
-                      \$cells = explode(\";\",\$row);
-                      if (\$row !== '.'){
-                        if (\$cells[0] == \$id){
-                          \$name = \$cells[1];
-                          \$price = \$cells[2];
-                          \$image = \$cells[3];
-                          \$description = \$cells[4];
-                        }
-                      }
-              }
-              fclose(\$f);
-              
-              
-                  \$text = \"
-                  <!DOCTYPE html>
-              <html lang=\\\"en\\\">
-                <head>
-                  <meta charset=\\\"utf-8\\\">
-                  <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\">
-                  <title>Product Detail</title>
-                  <link rel=\\\"stylesheet\\\" href=\\\"/main/assets/css/ProductDetail.css\\\">
-                </head>
-                <body>   
-                  <!--header-->
-                  <header id=\\\"header\\\">
-                    <img src=\\\"/main/assets/images/Lazada-logo.png\\\" alt=\\\"Lazada-logo\\\" width=\\\"200\\\" height=\\\"100\\\">
-                    <ul>
-                      <li><a href=\\\"$username.php\\\">My Account</a></li> <!--link for account page-->
-                    </ul>
-                  </header>
-              
-                  <form class=\\\"Product_detail\\\" method=\\\"post\\\" action=\\\"$username+\$id.php\\\">
-                    <!--product_detail-->
-                    <div id=\\\"detail_box\\\">
-                      <h2 id=\\\"product_title\\\">\$name</h2>
-                      <p id=\\\"product_price\\\"><sup><u>đ</u></sup> \$price</p>
-                      
-                    </div>
-              
-                    <!--image_box-->
-                    <div id=\\\"image_block\\\">
-                      <input class=\\\"image\\\" type=\\\"image\\\" src=\\\"/main/assets/images/Product1.jpg\\\" alt=\\\"men's shirt\\\" width=\\\"425\\\" height=\\\"425\\\">
-                      <p>\$image</p>
-                      <div id=\\\"image_box\\\"> <!--small pictures of the product-->
-                        <p>Description: \$description</p>
-                      </div>
-                    </div>
-              
-                    
-                  </form>
-              
-                  <!--footer-->
-                  <footer id=\\\"footer\\\">
-                      <ul>
-                        <li><a href=\\\"About.html\\\">About</a></li>
-                        <li><a href=\\\"Copyright.html\\\">Copyright</a></li>
-                        <li><a href=\\\"Privacy.html\\\">Privacy</a></li>
-                        <li><a href=\\\"Help.html\\\">Help</a></li>
-                      </ul>
-                  </footer>
-                </body>
-              </html>
-              <?php
-              // \\\$output = array(\\\"\$id;\\\");
-              // \\\$fp = fopen('./main/products_$username.csv', 'a');
-              // foreach (\\\$output as \\\$line)
-              // {
-              // fputcsv(\\\$fp,explode(',',\\\$line));
-              // }
-              // // fwrite(\\\$fp, \\\$output);
-              // fclose(\\\$fp);
+{
+  \$name = '';
+  \$price = '';
+  \$image = '';
+  \$description = '';
   
-              
-
-
-            
-            ?>
-                  \";
-                  if (file_exists(\"$username+\$id.php\")) {
-                      header(\"location: /main/$username+\$id.php\");
-                  } else {
-                      file_put_contents(\"$username+\$id.php\", \$text, FILE_APPEND | LOCK_EX);
-                      header(\"location: /main/$username+\$id.php\");
-                  }
-
-                  if (file_exists(\"products_$username.csv\")){
-                  } else {
-                    \$test = \"\";
-                    // \$p = fopen('/main/products_$username.csv', 'wb');
-                    file_put_contents(\"products_$username.csv\", \$test, FILE_APPEND | LOCK_EX);
-                    // fclose(\$p);
-                  }
-              };
-            
+  
+  \$f = fopen(\"products.csv\", \"r\");
+  while ((\$line = fgetcsv(\$f)) !== false) {
+          \$row = \$line[0];
+          \$cells = explode(\";\",\$row);
+          if (\$row !== '.'){
+            if (\$cells[0] == \$id){
+              \$name = \$cells[1];
+              \$price = \$cells[2];
+              \$image = \$cells[3];
+              \$description = \$cells[4];
+            }
+          }
+  }
+  fclose(\$f);
+  
+  
+      \$text = \"
+  <html lang=\\\"en\\\">
+    <head>
+      <meta charset=\\\"utf-8\\\">
+      <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\">
+      <title>Product Detail</title>
+      <link rel=\\\"stylesheet\\\" href=\\\"/main/assets/css/ProductDetail.css\\\">
+    </head>
+    <body>   
+      <!--header-->
+      <header id=\\\"header\\\">
+        <img src=\\\"/main/assets/images/Lazada-logo.png\\\" alt=\\\"Lazada-logo\\\" width=\\\"200\\\" height=\\\"100\\\">
+        <ul>
+          <li><a href=\\\"$username.php\\\">My Account</a></li> <!--link for account page-->
+        </ul>
+      </header>
+  
+      <form class=\\\"Product_detail\\\" method=\\\"post\\\" action=\\\"$username+\$id.php\\\">
+        <!--product_detail-->
+        <div id=\\\"detail_box\\\">
+          <h2 id=\\\"product_title\\\">\$name</h2>
+          <p id=\\\"product_price\\\"><sup><u>đ</u></sup> \$price</p>
           
-                ?>
+        </div>
+  
+        <!--image_box-->
+        <div id=\\\"image_block\\\">
+          <input class=\\\"image\\\" type=\\\"image\\\" src=\\\"/main/assets/images/Product1.jpg\\\" alt=\\\"men's shirt\\\" width=\\\"425\\\" height=\\\"425\\\">
+          <p>\$image</p>
+          <div id=\\\"image_box\\\"> <!--small pictures of the product-->
+            <p>Description: \$description</p>
+          </div>
+        </div>
+  
+        
+      </form>
+  
+      <!--footer-->
+      <footer id=\\\"footer\\\">
+          <ul>
+            <li><a href=\\\"About.html\\\">About</a></li>
+            <li><a href=\\\"Copyright.html\\\">Copyright</a></li>
+            <li><a href=\\\"Privacy.html\\\">Privacy</a></li>
+            <li><a href=\\\"Help.html\\\">Help</a></li>
+          </ul>
+      </footer>
+    </body>
+  </html>
+      \";
+      if (file_exists(\"$username+\$id.php\")) {
+          // header(\"location: /main/$username+\$id.php\");
+          \$url = \"/main/$username+\$id.php\";
+          echo '<script language=\"javascript\">window.location.href =\"'.\$url.'\"</script>';
+      } else {
+          file_put_contents(\"$username+\$id.php\", \$text, FILE_APPEND | LOCK_EX);
+          // header(\"location: /main/$username+\$id.php\");
+          \$url = \"/main/$username+\$id.php\";
+          echo '<script language=\"javascript\">window.location.href =\"'.\$url.'\"</script>';
+      }
+
+      if (file_exists(\"products_$username.csv\")){
+      } else {
+        \$test = \"\";
+        // \$p = fopen('/main/products_$username.csv', 'wb');
+        file_put_contents(\"products_$username.csv\", \$test, FILE_APPEND | LOCK_EX);
+        // fclose(\$p);
+      }
+  };
+?>
     </div>
   </form>
 
@@ -439,6 +508,7 @@ $new_customer_view = "
       </ul>
   </footer>
 </html>
+
 ";
 
 if (file_exists("customer_$username.php")) {

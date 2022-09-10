@@ -40,10 +40,10 @@
 
     <footer id="footer">
         <ul>
-          <li><a href="/Customer/About.html">About</a></li>
-          <li><a href="/Customer/Copyright.html">Copyright</a></li>
-          <li><a href="/Customer/Privacy.html">Privacy</a></li>
-          <li><a href="/Customer/Help.html">Help</a></li>
+          <li><a href="About.html">About</a></li>
+          <li><a href="Copyright.html">Copyright</a></li>
+          <li><a href="Privacy.html">Privacy</a></li>
+          <li><a href="Help.html">Help</a></li>
         </ul>
     </footer>
 </body>
@@ -257,10 +257,10 @@ if (isset(\$_POST[\"update_image\"])){
             
                 <footer id=\"footer\">
                     <ul>
-                        <li><a href=\"/Customer/About.html\">About</a></li>
-                        <li><a href=\"/Customer/Copyright.html\">Copyright</a></li>
-                        <li><a href=\"/Customer/Privacy.html\">Privacy</a></li>
-                        <li><a href=\"/Customer/Help.html\">Help</a></li>
+                        <li><a href=\"About.html\">About</a></li>
+                        <li><a href=\"Copyright.html\">Copyright</a></li>
+                        <li><a href=\"Privacy.html\">Privacy</a></li>
+                        <li><a href=\"Help.html\">Help</a></li>
                     </ul>
                 </footer>
             </body>
@@ -414,10 +414,10 @@ if (isset(\$_POST[\"update_image\"])){
             
                 <footer id=\"footer\">
                   <ul>
-                    <li><a href=\"/Customer/About.html\">About</a></li>
-                    <li><a href=\"/Customer/Copyright.html\">Copyright</a></li>
-                    <li><a href=\"/Customer/Privacy.html\">Privacy</a></li>
-                    <li><a href=\"/Customer/Help.html\">Help</a></li>
+                    <li><a href=\"About.html\">About</a></li>
+                    <li><a href=\"Copyright.html\">Copyright</a></li>
+                    <li><a href=\"Privacy.html\">Privacy</a></li>
+                    <li><a href=\"Help.html\">Help</a></li>
                   </ul>
                 </footer>
             </body>

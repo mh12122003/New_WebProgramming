@@ -43,10 +43,10 @@
 
     <footer id="footer">
       <ul>
-        <li><a href="/Customer/About.html">About</a></li>
-        <li><a href="/Customer/Copyright.html">Copyright</a></li>
-        <li><a href="/Customer/Privacy.html">Privacy</a></li>
-        <li><a href="/Customer/Help.html">Help</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="Copyright.html">Copyright</a></li>
+        <li><a href="Privacy.html">Privacy</a></li>
+        <li><a href="Help.html">Help</a></li>
       </ul>
     </footer>
 </body>
@@ -321,10 +321,10 @@ $new_vendor_view = "
 
     <footer id=\"footer\">
         <ul>
-            <li><a href=\"/Customer/About.html\">About</a></li>
-            <li><a href=\"/Customer/Copyright.html\">Copyright</a></li>
-            <li><a href=\"/Customer/Privacy.html\">Privacy</a></li>
-            <li><a href=\"/Customer/Help.html\">Help</a></li>
+            <li><a href=\"About.html\">About</a></li>
+            <li><a href=\"Copyright.html\">Copyright</a></li>
+            <li><a href=\"Privacy.html\">Privacy</a></li>
+            <li><a href=\"Help.html\">Help</a></li>
         </ul>
     </footer>
 </body>
@@ -478,10 +478,10 @@ $new_vendor_add = "
 
     <footer id=\"footer\">
       <ul>
-        <li><a href=\"/Customer/About.html\">About</a></li>
-        <li><a href=\"/Customer/Copyright.html\">Copyright</a></li>
-        <li><a href=\"/Customer/Privacy.html\">Privacy</a></li>
-        <li><a href=\"/Customer/Help.html\">Help</a></li>
+        <li><a href=\"About.html\">About</a></li>
+        <li><a href=\"Copyright.html\">Copyright</a></li>
+        <li><a href=\"Privacy.html\">Privacy</a></li>
+        <li><a href=\"Help.html\">Help</a></li>
       </ul>
     </footer>
 </body>
